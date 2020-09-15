@@ -72,10 +72,10 @@ RUN /bin/sh -c 'echo "deb [trusted=yes] http://packages.osrfoundation.org/gazebo
  && /bin/sh -c 'wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -' \
  && /bin/sh -c 'apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654'
 
-# install ign-blueprint
+# install ign-citadel
 RUN apt-get update \
 &&  apt-get install -y \
-    ignition-blueprint \
+    ignition-citadel \
  && apt-get clean
 
 # install the ros to ign bridge
@@ -108,7 +108,7 @@ RUN rosdep update
 # docker is run
 RUN mkdir -p subt_ws/src \
  && cd subt_ws/src \
- && git clone https://github.com/osrf/subt
+ && git clone https://github.com/osrf/subt -b citadel
 
 # Download the public models
 RUN ign fuel download -v 4 -j 8 -u "https://fuel.ignitionrobotics.org/OpenRobotics/collections/SubT Tech Repo"
